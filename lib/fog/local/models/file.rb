@@ -105,9 +105,9 @@ module Fog
         def directory=(new_directory)
           @directory = new_directory
         end
-
+      
         def uri_escape(string)
-          string.b.gsub(URI::DEFAULT_PARSER.regexp[:UNSAFE]) do |m|
+          string.b.gsub(/[^\-_.!~*'()a-zA-Z\d;\/?:@&=+$,\[\]]/) do |m|
             '%' + m.unpack('H2' * m.bytesize).join('%').upcase
           end
         end
